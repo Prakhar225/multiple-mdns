@@ -1,0 +1,18 @@
+[Unit]
+Description=Avahi/mDNS CNAME publisher
+After=network.target avahi-daemon.service
+PartOf=avahi-daemon.service
+
+[Service]
+User=nobody
+Group=nobody
+Type=simple
+WorkingDirectory=/var/empty
+EnvironmentFile=-/etc/default/mdns-publish-cname
+ExecStart=/root/multi-dns.sh
+Restart=no
+PrivateTmp=true
+PrivateDevices=true
+
+[Install]
+WantedBy=multi-user.target
